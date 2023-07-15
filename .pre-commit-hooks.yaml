@@ -1,0 +1,23 @@
+-   id: analyzer
+    stages: [commit]
+    name: Static Analysis
+    description: Runs flutter analyze locally
+    entry: analyzer
+    language: python
+
+-   id: code_formatter
+    stages: [commit]
+    name: Code Formatter
+    description: Automatically fixes issues found by the analyzer and formats the code
+    entry: formatter
+    language: python
+    files: \.dart$
+
+-   id: test_runner
+    stages: [push]
+    name: Test Runner
+    description: Runs flutter test locally
+    entry: test_runner
+    language: python
+
+
