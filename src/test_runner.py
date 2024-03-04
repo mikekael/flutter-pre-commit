@@ -2,11 +2,15 @@ import subprocess
 
 from typing import Sequence
 
-
 def main(argv: Sequence[str] | None = None) -> int:
     print('Running flutter test')
 
-    result = subprocess.run('flutter test --machine', shell=True, capture_output=True, text=True)
+    cmd = 'flutter test --machine'
+
+    if argv is not None:
+        cmd = '%s %s' %(cmd, ' '.join(argv[1:]))
+
+    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
 
     if result.returncode != 0:
         print('Failed test see below: \n', result.stdout)
